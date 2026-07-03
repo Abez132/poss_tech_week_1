@@ -1,10 +1,15 @@
 const fs = require("fs");
 
-const FILE = "./tasks.json";
+const FILE = "./task.json";
 
 // Read all tasks
 function getTasks() {
-    const data = fs.readFileSync(FILE);
+    const data = fs.readFileSync(FILE, "utf8").trim();
+
+    if (!data) {
+        return [];
+    }
+
     return JSON.parse(data);
 }
 
