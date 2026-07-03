@@ -2,7 +2,6 @@ const fs = require("fs");
 
 const FILE = "./task.json";
 
-// Read all tasks
 function getTasks() {
     const data = fs.readFileSync(FILE, "utf8").trim();
 
@@ -13,7 +12,7 @@ function getTasks() {
     return JSON.parse(data);
 }
 
-// Save tasks
+
 function saveTasks(tasks) {
     fs.writeFileSync(FILE, JSON.stringify(tasks, null, 2));
 }
@@ -58,7 +57,7 @@ function completeTask(id) {
     console.log("Task completed.");
 }
 
-// Remove task
+// Remove task from list
 function removeTask(id) {
     let tasks = getTasks();
 
@@ -69,7 +68,7 @@ function removeTask(id) {
     console.log("Task removed.");
 }
 
-// Filter completed
+// Filter completed ones
 function filterCompleted() {
     const tasks = getTasks();
 

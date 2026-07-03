@@ -8,7 +8,6 @@ const {
 
 const args = process.argv.slice(2);
 
-// First argument
 const command = args[0];
 
 switch (command) {

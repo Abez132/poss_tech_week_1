@@ -2,7 +2,7 @@
   {
     "id": 1,
     "task": "Task",
-    "completed": false
+    "completed": true
   },
   {
     "id": 2,
