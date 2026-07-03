@@ -6,6 +6,11 @@
   },
   {
     "id": 2,
+    "completed": true
+  },
+  {
+    "id": 3,
+    "task": "Learn Docker",
     "completed": false
   }
 ]
