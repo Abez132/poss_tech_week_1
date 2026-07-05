@@ -21,6 +21,22 @@ router.post('/',(req,res)=>{
     res.send('task added');
 });
 
+router.delete('/:id',(req,res)=>{
+    const {id}= req.params;
+
+    removeTask(id);
+    res.send("task removed successfully")
+    
+});
+
+router.patch('/:id',(req,res)=>{
+    const {id}= req.params;
+    completeTask(id);
+    res.send("completed the task successfully");
+});
+
+
+
 const FILE = "./task.json";
 
 function getTasks() {
