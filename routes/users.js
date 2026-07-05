@@ -1,4 +1,25 @@
-const fs = require("fs");
+import express from 'express';
+import fs from 'fs';
+
+const router = express.Router();
+// router.get('/',(req,res)=>
+// res.send("hi")
+
+// );
+
+router.get('/',(req,res)=>{
+    const list=getTasks();
+
+    console.log(list);
+    res.send(list);
+
+});
+
+router.post('/',(req,res)=>{
+    const task=req.body;
+    addTask(task.task);
+    res.send('task added');
+});
 
 const FILE = "./task.json";
 
@@ -25,7 +46,7 @@ function addTask(taskName) {
         id: tasks.length + 1,
         task: taskName,
         completed: false
-    });
+    }); 
 
     saveTasks(tasks);
 
@@ -75,10 +96,4 @@ function filterCompleted() {
     console.table(tasks.filter(t => t.completed));
 }
 
-module.exports = {
-    addTask,
-    listTasks,
-    completeTask,
-    removeTask,
-    filterCompleted
-};
+ export default router;
