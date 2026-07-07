@@ -1,18 +1,17 @@
-import pool from '../config/db.js';
+import pool from "../config/db.js";
 
-const createTable=async()=>{
-    const query=`CREATE TABLE IF NOT EXISTS tasks (
-    id SERIAL PRIMARY KEY,
+const createTable = async () => {
+    const query = `CREATE TABLE IF NOT EXISTS tasks (
+    id UUID PRIMARY KEY,
     task TEXT NOT NULL,
     completed BOOLEAN DEFAULT FALSE
-);`
-try {
+);`;
+    try {
     await pool.query(query);
-    console.log("database created ")
-    
-} catch (error) {
+    console.log("database created ");
+    } catch (error) {
     console.log(`something went wrong ${error}`);
-}
-}
+    }
+};
 
 export default createTable;
