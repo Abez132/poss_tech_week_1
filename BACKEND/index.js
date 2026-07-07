@@ -21,4 +21,5 @@ createTable();
 app.get('/',async(req,res)=>{
     const result= await pool.query("select current_database()");
     res.send(`the current database is ${result.rows[0].current_database}`);
+    console.log(result.rows[0].current_database);
 });

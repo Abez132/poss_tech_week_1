@@ -11,7 +11,7 @@ try {
     console.log("database created ")
     
 } catch (error) {
-    console.log(`some thing went wrong ${error}`);
+    console.log(`something went wrong ${error}`);
 }
 }
 
