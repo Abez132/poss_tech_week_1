@@ -30,5 +30,15 @@ services:
       db:
         condition: service_healthy
 
+  frontend:
+    build:
+      context: ./FRONTEND
+    container_name: frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
 volumes:
   postgres_data:
