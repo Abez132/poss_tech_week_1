@@ -8,7 +8,6 @@ const router = express.Router();
 // All task routes require a valid JWT
 router.use(authMiddleware);
 
-// ── GET /users — fetch all tasks for the logged-in user ───────────────────
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
@@ -22,7 +21,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ── POST /users — create a task for the logged-in user ───────────────────
 router.post("/", async (req, res) => {
   const { task } = req.body;
   const id = uuidv4();
@@ -39,7 +37,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ── PATCH /users/:id — toggle completed (only owner can update) ───────────
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -57,7 +54,6 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-// ── DELETE /users/:id — delete (only owner can delete) ────────────────────
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 

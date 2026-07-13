@@ -48,7 +48,7 @@ export default function AuthPage({ onAuth }: AuthPageProps) {
       <div className="relative z-10 w-full max-w-sm bg-[rgba(18,18,30,0.9)] backdrop-blur-2xl border border-white/[0.07] rounded-3xl p-8 shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 mb-3">
             <svg
               width="22"
               height="22"
@@ -82,7 +82,7 @@ export default function AuthPage({ onAuth }: AuthPageProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none transition-all focus:border-violet-500/60 focus:bg-violet-500/5 focus:ring-2 focus:ring-violet-500/10"
+              className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none transition-all focus:border-violet-500/60 focus:bg-violet-500/5 focus:ring-2 focus:ring-violet-500/10"
             />
           </div>
 
@@ -98,7 +98,7 @@ export default function AuthPage({ onAuth }: AuthPageProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none transition-all focus:border-violet-500/60 focus:bg-violet-500/5 focus:ring-2 focus:ring-violet-500/10"
+              className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none transition-all focus:border-violet-500/60 focus:bg-violet-500/5 focus:ring-2 focus:ring-violet-500/10"
             />
           </div>
 
@@ -112,7 +112,7 @@ export default function AuthPage({ onAuth }: AuthPageProps) {
           <button
             type="submit"
             disabled={loading}
-            className="mt-1 bg-gradient-to-br from-violet-600 to-indigo-600 text-white text-sm font-semibold py-3 rounded-xl transition-all shadow-lg shadow-violet-500/30 hover:-translate-y-0.5 hover:shadow-violet-500/50 active:translate-y-0 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+            className="mt-1 bg-linear-to-br from-violet-600 to-indigo-600 text-white text-sm font-semibold py-3 rounded-xl transition-all shadow-lg shadow-violet-500/30 hover:-translate-y-0.5 hover:shadow-violet-500/50 active:translate-y-0 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
           >
             {loading ? (
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

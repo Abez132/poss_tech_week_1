@@ -17,10 +17,10 @@ app.use("/auth", authRouter); // public  — register & login
 app.use("/users", taskRouter); // protected — requires JWT
 
 app.get("/", async (_req, res) => {
-  const result = await pool.query("select current_database()");
-  res.send(`connected to: ${result.rows[0].current_database}`);
+    const result = await pool.query("select current_database()");
+    res.send(`connected to: ${result.rows[0].current_database}`);
 });
 
 createTable().then(() => {
-  app.listen(port, () => console.log(`server running on port ${port}`));
+    app.listen(port, () => console.log(`server running on port ${port}`));
 });
