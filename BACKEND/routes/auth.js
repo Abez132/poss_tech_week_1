@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import pool from "../config/db.js";
+import logger from "../utils/logger.js";
 
 const router = express.Router();
 
@@ -37,7 +38,7 @@ router.post("/register", async (req, res) => {
     });
     res.status(201).json({ token });
   } catch (error) {
-    console.log("register error", error);
+    logger.error("register error", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });
@@ -65,7 +66,7 @@ router.post("/login", async (req, res) => {
     });
     res.json({ token });
   } catch (error) {
-    console.log("login error", error);
+    logger.error("login error", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });

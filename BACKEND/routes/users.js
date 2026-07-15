@@ -2,6 +2,7 @@ import express from "express";
 import pool from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 import authMiddleware from "../middleware/auth.js";
+import logger from "../utils/logger.js";
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
     );
     res.json(result.rows);
   } catch (error) {
-    console.log("error fetching tasks", error);
+    logger.error("error fetching tasks", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
     );
     res.status(201).json(result.rows);
   } catch (error) {
-    console.log("error creating task", error);
+    logger.error("error creating task", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });
@@ -49,7 +50,7 @@ router.patch("/:id", async (req, res) => {
       return res.status(404).json({ error: "task not found" });
     res.json(result.rows[0]);
   } catch (error) {
-    console.log("error updating task", error);
+    logger.error("error updating task", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });
@@ -66,7 +67,7 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ error: "task not found" });
     res.json({ message: "task deleted" });
   } catch (error) {
-    console.log("error deleting task", error);
+    logger.error("error deleting task", { error });
     res.status(500).json({ error: "internal server error" });
   }
 });
