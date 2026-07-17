@@ -1,4 +1,4 @@
-import type { Task } from "../types";
+import type { Task, Priority } from "../types";
 
 interface TaskItemProps {
   task: Task;
@@ -8,6 +8,12 @@ interface TaskItemProps {
   onDelete: (id: string) => void;
   index: number;
 }
+
+const priorityBadge: Record<Priority, string> = {
+  High: "text-red-400 bg-red-500/10 border-red-500/25",
+  Medium: "text-yellow-400 bg-yellow-500/10 border-yellow-500/25",
+  Low: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25",
+};
 
 export default function TaskItem({
   task,
@@ -60,13 +66,20 @@ export default function TaskItem({
         )}
       </button>
 
-      {/* Task text */}
+      {/* Task text + priority badge */}
       <div className="flex-1 min-w-0">
-        <span
-          className={`text-sm leading-snug wrap-break-word ${task.completed ? "line-through text-slate-600" : "text-slate-300"}`}
-        >
-          {task.task}
-        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span
+            className={`text-sm leading-snug wrap-break-word ${task.completed ? "line-through text-slate-600" : "text-slate-300"}`}
+          >
+            {task.task}
+          </span>
+          <span
+            className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-md border shrink-0 ${priorityBadge[task.priority]}`}
+          >
+            {task.priority}
+          </span>
+        </div>
         {task.completed && (
           <p className="text-[11px] text-violet-500/70 font-medium mt-0.5">
             Completed

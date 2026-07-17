@@ -22,14 +22,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+const VALID_PRIORITIES = ["High", "Medium", "Low"];
+
 router.post("/", async (req, res) => {
-  const { task } = req.body;
+  const { task, priority = "Medium" } = req.body;
+
+  if (!VALID_PRIORITIES.includes(priority)) {
+    return res.status(400).json({ error: "priority must be High, Medium, or Low" });
+  }
+
   const id = uuidv4();
 
   try {
     const result = await pool.query(
-      "INSERT INTO tasks (id, user_id, task) VALUES ($1, $2, $3) RETURNING *",
-      [id, req.userId, task],
+      "INSERT INTO tasks (id, user_id, task, priority) VALUES ($1, $2, $3, $4) RETURNING *",
+      [id, req.userId, task, priority],
     );
     res.status(201).json(result.rows);
   } catch (error) {

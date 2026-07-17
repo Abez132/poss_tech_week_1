@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Task, Filter } from "./types";
+import type { Task, Filter, Priority } from "./types";
 import { apiFetch } from "./api";
 import AuthPage from "./components/AuthPage";
 import Header from "./components/Header";
@@ -15,6 +15,7 @@ export default function App() {
   );
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
+  const [priority, setPriority] = useState<Priority>("Medium");
   const [filter, setFilter] = useState<Filter>("all");
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
@@ -49,11 +50,12 @@ export default function App() {
     try {
       const res = await apiFetch("/users", {
         method: "POST",
-        body: JSON.stringify({ task: trimmed }),
+        body: JSON.stringify({ task: trimmed, priority }),
       });
       const data = await res.json();
       setTasks((prev) => [...prev, data[0]]);
       setInput("");
+      setPriority("Medium");
     } catch {
       setError("Failed to add task.");
     } finally {
@@ -145,6 +147,8 @@ export default function App() {
         <TaskInput
           value={input}
           onChange={setInput}
+          priority={priority}
+          onPriorityChange={setPriority}
           onAdd={addTask}
           adding={adding}
         />
